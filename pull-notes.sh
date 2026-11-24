@@ -11,7 +11,11 @@ ARCHIVE="$SCRIPT_DIR/notesServer_enc"
 cd "$SCRIPT_DIR"
 git pull
 
-[[ ! -d "$NOTES_DIR" ]] || { echo "Error: $NOTES_DIR already exists. Remove or rename it before pulling." >&2; exit 1; }
+if [[ -d "$NOTES_DIR" ]]; then
+  BACKUP_DIR="${NOTES_DIR}.bak.$(date +%Y%m%d%H%M%S)"
+  echo "Note: $NOTES_DIR already exists, moving it to: $BACKUP_DIR"
+  mv "$NOTES_DIR" "$BACKUP_DIR"
+fi
 
 "$SCRIPT_DIR/scripts/decrypt_folder.sh" "$ARCHIVE" "$SCRIPT_DIR"
 

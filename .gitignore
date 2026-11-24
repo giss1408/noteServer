@@ -1,5 +1,6 @@
 # Plaintext notes working copies — never commit these, only the encrypted archive.
 notesServer_enc_dec/
 notesServer_enc_dec_*/
+notesServer_enc_dec.bak.*/
 *.tar.gz
 *.tgz

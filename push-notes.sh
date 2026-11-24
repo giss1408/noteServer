@@ -10,9 +10,11 @@ ARCHIVE="$SCRIPT_DIR/notesServer_enc"
 
 [[ -d "$NOTES_DIR" ]] || { echo "Error: notes folder not found: $NOTES_DIR" >&2; exit 1; }
 
+cd "$SCRIPT_DIR"
+git pull --ff-only
+
 "$SCRIPT_DIR/scripts/encrypt_folder.sh" "$NOTES_DIR" "$ARCHIVE"
 
-cd "$SCRIPT_DIR"
 git add notesServer_enc notesServer_enc.sha256
 
 if git diff --cached --quiet; then
